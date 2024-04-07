@@ -1,9 +1,18 @@
+import  { Form }  from "./components/Form"
+import { Header } from "./components/Header"
+import { List } from "./components/List"
 
 function App() {
 
   return (
     <>
-      <h1>Appointments App</h1>
+      <div className="container mx-auto mt-20">
+        <Header />
+        <div className="mt-12 mx-4 md:mx-24 md:flex">
+          <Form />
+          <List />
+        </div>
+      </div>
     </>
   )
 }
