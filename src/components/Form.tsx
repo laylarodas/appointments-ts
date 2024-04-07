@@ -1,8 +1,10 @@
 import { useForm } from 'react-hook-form'
+import { useEffect } from 'react';
+import { toast } from 'react-toastify'
 import { Error } from './Error';
 import { DraftPatient } from '../types';
 import { usePatientStore } from '../store';
-import { useEffect } from 'react';
+
 
 
 export const Form = () => {
@@ -30,8 +32,10 @@ export const Form = () => {
 
         if(activeId) {
             updatePatient(data)
+            toast.success('Pet Updated Successfully')
         } else {
             addPatient(data)
+            toast.success('Pet Added Successfully')
         }
 
         reset()

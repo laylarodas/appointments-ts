@@ -1,6 +1,8 @@
+import { ToastContainer } from 'react-toastify'
 import  { Form }  from "./components/Form"
 import { Header } from "./components/Header"
 import { List } from "./components/List"
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 
@@ -13,6 +15,7 @@ function App() {
           <List />
         </div>
       </div>
+      <ToastContainer autoClose={2000}/>
     </>
   )
 }
