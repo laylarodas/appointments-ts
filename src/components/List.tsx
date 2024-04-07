@@ -1,4 +1,4 @@
-
+import { usePatientStore } from '../store'
 
 export const List = () => {
     return (

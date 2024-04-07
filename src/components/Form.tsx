@@ -1,12 +1,17 @@
 import { useForm } from 'react-hook-form'
 import { Error } from './Error';
+import { DraftPatient } from '../types';
+import { usePatientStore } from '../store';
+
 
 export const Form = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const addPatient = usePatientStore(state => state.addPatient)
+    
+    const { register, handleSubmit, formState: { errors } } = useForm<DraftPatient>();
 
-    const registerPatient = () => {
-        console.log('Registering Patient')
+    const registerPatient = (data : DraftPatient) => {
+        addPatient(data)
     }
 
     return (
@@ -36,7 +41,7 @@ export const Form = () => {
 
                     />
                     {errors.name && (
-                        <Error>{errors.name.message?.toString()}</Error>
+                        <Error>{errors.name.message}</Error>
                     )}
 
                 </div>
@@ -53,7 +58,7 @@ export const Form = () => {
                         {...register('caretaker', { required: 'The caretaker field is required' })}
                     />
                     {errors.caretaker && (
-                        <Error>{errors.caretaker.message?.toString()}</Error>
+                        <Error>{errors.caretaker.message}</Error>
                     )}
                 </div>
 
@@ -75,7 +80,7 @@ export const Form = () => {
                           })} 
                     />
                     {errors.email && (
-                        <Error>{errors.email.message?.toString()}</Error>
+                        <Error>{errors.email.message}</Error>
                     )}
                 </div>
 
@@ -90,7 +95,7 @@ export const Form = () => {
                         {...register('date', { required: 'The date field is required' })}
                     />
                     {errors.date && (
-                        <Error>{errors.date.message?.toString()}</Error>
+                        <Error>{errors.date.message}</Error>
                     )}
                 </div>
 
@@ -102,11 +107,11 @@ export const Form = () => {
                         id="symptoms"
                         className="w-full p-3  border border-gray-100"
                         placeholder="Describe the Symptoms of the Pet"
-                        {...register('symptons', { required: 'The symptoms field is required' }
+                        {...register('symptoms', { required: 'The symptoms field is required' }
                     )}
                     />
-                    {errors.symptons && (
-                        <Error>{errors.symptons.message?.toString()}</Error>
+                    {errors.symptoms && (
+                        <Error>{errors.symptoms.message}</Error>
                     )}
                 </div>
 
