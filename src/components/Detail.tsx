@@ -1,5 +1,6 @@
 import { Patient } from "../types"
 import { DetailItem } from "./DetailItem"
+import { usePatientStore } from "../store"
 
 type DetailProps = {
     patient: Patient
@@ -7,6 +8,11 @@ type DetailProps = {
 }
 
 export const Detail = ({patient}: DetailProps) => {
+
+    const deletePatient = usePatientStore(state => state.deletePatient);
+    const getPatientById = usePatientStore(state => state.getPatientById);
+
+
   return (
     <div className="mx-5 my-10 px-5 py-5 bg-white rounded-xl shadow-md">
         <DetailItem label={"ID"} data={patient.id}/>
@@ -16,11 +22,19 @@ export const Detail = ({patient}: DetailProps) => {
         <DetailItem label={"Date"} data={patient.date.toString()}/>
         <DetailItem label={"Symptoms"} data={patient.symptoms}/>
 
-        <div className="flex justify-end gap-3">
-            <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-8 rounded mt-5">
+        <div className="flex flex-col lg:flex-row justify-end gap-1">
+            <button 
+                type="button"
+                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-8 rounded mt-5"
+                onClick={() => getPatientById(patient.id)}
+            >
                 Edit
             </button>
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded mt-5">
+            <button 
+                type="button"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded mt-5"
+                onClick={() => deletePatient(patient.id)}
+            >
                 Delete
             </button>
         </div>
